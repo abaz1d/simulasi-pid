@@ -52,7 +52,7 @@ module.exports = function (db) {
   });
 
   //logout
-  router.get("/logout", function (req, res) {
+  router.post("/logout", function (req, res) {
     const userId = req.session.user?.id_user;
 
     if (!userId) {
