@@ -13,7 +13,7 @@ module.exports = function (db) {
       if (data.rows.length > 0) {
         // If users table is not empty, set up req.session.user and redirect to /dashboard
         req.session.user = data.rows[0];
-        res.render("dashboard/dashboard", { title: "Polines" });
+        return res.render("dashboard/dashboard", { title: "Polines" });
       }
 
       // If users table is empty, render the index page
