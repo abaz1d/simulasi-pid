@@ -17,7 +17,7 @@ module.exports = function (db) {
       }
 
       // If users table is empty, render the index page
-      res.render("index", { title: "Polines" });
+      return res.redirect("/");
     });
   });
 
