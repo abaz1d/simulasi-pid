@@ -47,8 +47,8 @@ module.exports = function (db) {
     }
     const query = `
       UPDATE users
-      SET setpoint = $1, kp = $2, ki = $3, kd = $4, time_sampling = $5
-      WHERE id = $6
+      SET setpoint = $1, kp = $2, ki = $3, kd = $4, time_sampling = $5, mode_kendali = $6
+      WHERE id = $7
       `;
     const values = [
       set_point,
@@ -56,6 +56,7 @@ module.exports = function (db) {
       ki,
       kd,
       time_sampling,
+      mode,
       req.session.user.id_user, // Assuming `id` is passed in the request body
     ];
 
