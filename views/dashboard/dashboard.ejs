@@ -358,6 +358,10 @@
       // Send logout command to server
       $.post("/logout", function (response) {
         console.log("Logout command sent:", response);
+        window.location.href = "/";
+      }).fail(function (xhr, status, error) {
+        console.error("Logout failed:", error);
+        alert("Error during logout. Please try again.");
       });
     });
   });
