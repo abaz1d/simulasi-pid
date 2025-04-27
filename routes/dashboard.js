@@ -31,21 +31,42 @@ module.exports = function (db) {
       set_point = null,
       time_sampling = null,
     } = req.body;
-    // const query = `
-    //   UPDATE users
-    //   SET setpoint = $1, kp = $2, ki = $3, kd = $4, output_rpm = $5, kelompok = $6, time_sampling = $7
-    //   WHERE id = $8
-    //   `;
-    // const values = [
-    //   set_point,
-    //   kp,
-    //   ki,
-    //   kd,
-    //   0,
-    //   "1",
-    //   time_sampling,
-    //   req.body.id, // Assuming `id` is passed in the request body
-    // ];
+    if (!req.session.user) {
+      db.query("SELECT * FROM users LIMIT 1", (err, data) => {
+        if (err) {
+          console.error("Database error:", err);
+          return res.status(500).send("Database query error");
+        }
+
+        if (data.rows.length > 0) {
+          req.session.user = data.rows[0];
+        } else {
+          return res.redirect("/");
+        }
+      });
+    }
+    const query = `
+      UPDATE users
+      SET setpoint = $1, kp = $2, ki = $3, kd = $4, time_sampling = $5
+      WHERE id = $6
+      `;
+    const values = [
+      set_point,
+      kp,
+      ki,
+      kd,
+      time_sampling,
+      req.session.user.id_user, // Assuming `id` is passed in the request body
+    ];
+
+    db.query(query, values, (err, result) => {
+      if (err) {
+        console.error("Database error:", err);
+        return res.status(500).send("Database query error");
+      }
+
+      res.status(200).send("Data added successfully");
+    });
     console.log("INI YANG POST DARI DEPAN", req.body, req.session.user);
   });
   return router;
