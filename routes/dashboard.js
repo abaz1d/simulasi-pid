@@ -4,7 +4,21 @@ var router = express.Router();
 module.exports = function (db) {
   /* GET home page. */
   router.get("/", function (req, res, next) {
-    res.render("dashboard/dashboard", { title: "Polines" });
+    db.query("SELECT * FROM users", (err, data) => {
+      if (err) {
+        console.log(err);
+        return res.send(err);
+      }
+
+      if (data.rows.length > 0) {
+        // If users table is not empty, set up req.session.user and redirect to /dashboard
+        req.session.user = data.rows[0];
+        res.render("dashboard/dashboard", { title: "Polines" });
+      }
+
+      // If users table is empty, render the index page
+      res.render("index", { title: "Polines" });
+    });
   });
 
   // POST
