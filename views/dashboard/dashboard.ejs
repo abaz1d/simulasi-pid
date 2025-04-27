@@ -308,12 +308,12 @@
 
       // Get all form values
       const formData = {
-        mode: $(".dropdown-toggle").text(),
-        Kp: $("#Kp").val(),
-        Ki: $("#Ki").val(),
-        Kd: $("#Kd").val(),
-        setPoint: $("#SetPoint").val(),
-        timeSampling: $("#timesampling").val(),
+        mode: $(".dropdown-toggle").text() || null,
+        kp: $("#Kp").val() || null,
+        ki: $("#Ki").val() || null,
+        kd: $("#Kd").val() || null,
+        set_point: $("#SetPoint").val() || null,
+        time_sampling: $("#timesampling").val() || null,
       };
 
       // POST to /dashboard
