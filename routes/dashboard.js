@@ -46,7 +46,7 @@ module.exports = function (db) {
     //   time_sampling,
     //   req.body.id, // Assuming `id` is passed in the request body
     // ];
-    console.log("INI YANG POST DARI DEPAN", req.body);
+    console.log("INI YANG POST DARI DEPAN", req.body, req.session.user);
   });
   return router;
 };
