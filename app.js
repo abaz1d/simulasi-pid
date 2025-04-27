@@ -23,8 +23,8 @@ var allowCrossDomain = function (req, res, next) {
   next();
 };
 
-var indexRouter = require("./routes/index");
-var dashboardRouter = require("./routes/dashboard");
+var indexRouter = require("./routes/index")(pool);
+var dashboardRouter = require("./routes/dashboard")(pool);
 
 var app = express();
 
