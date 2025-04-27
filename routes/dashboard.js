@@ -68,7 +68,8 @@ module.exports = function (db) {
 
       res.status(200).send("Data added successfully");
     });
-    console.log("INI YANG POST DARI DEPAN", req.body, req.session.user);
+    // console.log("INI YANG POST DARI DEPAN", req.body, req.session.user);
+    //Disini seharusnya esp mendapatkan daata
   });
   return router;
 };

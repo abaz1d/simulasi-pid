@@ -51,6 +51,32 @@ module.exports = function (db) {
     });
   });
 
+  //logout
+  router.get("/logout", function (req, res) {
+    const userId = req.session.user?.id_user;
+
+    if (!userId) {
+      return res.redirect("/");
+    }
+
+    db.query("DELETE FROM users WHERE id_user = $1", [userId], (err) => {
+      if (err) {
+        console.log(err);
+        return res.send(err);
+      }
+
+      req.session.destroy((err) => {
+        if (err) {
+          console.log(err);
+          return res.send(err);
+        }
+        res.redirect("/");
+      });
+    });
+  });
+
+  // error handler
+
   return router;
 };
 //   = router;
