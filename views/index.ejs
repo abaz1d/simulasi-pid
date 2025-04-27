@@ -1,0 +1,34 @@
+<%- include('./partials/header') %>
+<div
+  class="d-flex align-items-center py-4 bg-body-tertiary"
+  style="height: 72vh; overflow: hidden"
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm p-4">
+          <h1 class="text-center mb-4">Login</h1>
+          <form onsubmit="event.preventDefault(); validateLogin();">
+            <div class="mb-3">
+              <div class="form-floating">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="Kelompok"
+                />
+                <label for="floatingInput">Nama Pengguna</label>
+              </div>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Masuk</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>
