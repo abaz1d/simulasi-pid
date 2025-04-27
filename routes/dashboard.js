@@ -48,7 +48,7 @@ module.exports = function (db) {
     const query = `
       UPDATE users
       SET setpoint = $1, kp = $2, ki = $3, kd = $4, time_sampling = $5, mode_kendali = $6
-      WHERE id = $7
+      WHERE id_user = $7
       `;
     const values = [
       set_point,
